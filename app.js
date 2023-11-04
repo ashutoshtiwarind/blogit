@@ -1,7 +1,7 @@
 require('dotenv').config();
 const path = require('path');
 const express = require("express");
-const mongoose = require("mongoose");
+const { connect } = require("mongoose");
 const cookieParser = require("cookie-parser");
 
 const Blog = require("./models/blog");
@@ -13,7 +13,7 @@ const { checkForAuthenticationCookie } = require('./middleware/authentication');
 
 const app = express();
 const PORT = process.env.PORT || 8000;
-mongoose.connect(process.env.MONGO_URL).then(() => {
+connect(process.env.MONGO_URL).then(() => {
     console.log('Connected to MongoDB Atlas!');
   })
   .catch((err) => {
